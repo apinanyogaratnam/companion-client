@@ -14,14 +14,27 @@
   color: #61dafb;
 }
 
-.width-full {
+.width-100 {
   width: 100%;
 }
-
+.width-90 {
+  width: 90%;
+}
+.width-80 {
+  width: 80%;
+}
 .width-70 {
   width: 70%;
 }
-
+.width-60 {
+  width: 60%;
+}
 .width-50 {
-  width: 70%;
+  width: 50%;
+}
+.width-40 {
+  width: 40%;
+}
+.width-30 {
+  width: 30%;
 }

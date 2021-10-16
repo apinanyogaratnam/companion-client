@@ -13,7 +13,7 @@ export function PasswordField(props) {
   return (
     <Form.Group className='mb-2' controlId='formPassword'>
       <Form.Label>Password</Form.Label>
-      <Form.Control type='text' placeholder=''/>
+      <Form.Control type='password' placeholder=''/>
     </Form.Group>
   );
 }

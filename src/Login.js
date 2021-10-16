@@ -6,13 +6,25 @@ import Button from 'react-bootstrap/Button';
 import { UsernameField, PasswordField } from './Auth/Fields';
 
 export default function Login(props) {
-  return (
-    <Form className='w'>
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const username = form.elements.formUsername.value;
+    const password = form.elements.formPassword.value;
+    const response = await fetch(props.apiURL, {
+      method: 'POST',
+      headers: ''
+    });
+  }
+  
+  return <>
+    <h1>Log in</h1>
+    <Form className='width-30' onSubmit={handleSubmit}>
       <UsernameField/>
       <PasswordField/>
       <Button variant="primary" type="submit">
         Log in
       </Button>
     </Form>
-  );
+  </>;
 }
