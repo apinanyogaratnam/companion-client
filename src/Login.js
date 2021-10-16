@@ -3,6 +3,8 @@ import './App.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+import { UsernameField, PasswordField } from './Auth/Fields';
+
 export default function Login(props) {
   return (
     <Form className='w'>
@@ -12,22 +14,5 @@ export default function Login(props) {
         Log in
       </Button>
     </Form>
-  );
-}
-
-function UsernameField(props) {
-  return (
-    <Form.Group className='mb-2' controlId='formUsername'>
-      <Form.Label>Username</Form.Label>
-      <Form.Control type='text' placeholder=''/>
-    </Form.Group>
-  );
-}
-function PasswordField(props) {
-  return (
-    <Form.Group className='mb-2' controlId='formPassword'>
-      <Form.Label>Password</Form.Label>
-      <Form.Control type='text' placeholder=''/>
-    </Form.Group>
   );
 }
