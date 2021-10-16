@@ -20,9 +20,6 @@ export default function Login(props) {
     const reqBody = { email, password };
     console.dir(reqBody);
 
-    isValidUser(email, password);
-    console.log(userData);
-
     try {
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/validate`,
