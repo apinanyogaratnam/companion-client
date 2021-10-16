@@ -1,6 +1,8 @@
 import './App.css';
 import Register from './Register';
 
+import Login from './Login';
+
 function App() {
   const email = ""
   const username = ""
@@ -9,9 +11,8 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-      <Register />
-      </header>
+      <Login/>
+      </Register/>
     </div>
   );
 }
