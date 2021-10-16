@@ -17,3 +17,12 @@ export function PasswordField(props) {
     </Form.Group>
   );
 }
+
+export function GenericField(props){
+  return (
+    <Form.Group className='mb-2' controlId={props.controlid}>
+      <Form.Label>{props.label_text}</Form.Label>
+      <Form.Control type='text' placeholder=''/>
+    </Form.Group>
+  );
+}
