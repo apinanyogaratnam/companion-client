@@ -1,7 +1,17 @@
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 import './App.css';
 import Register from './Register';
 
 import Login from './Login';
+import Landing from './Landing';
+
+const apiURL = 'https://server.companionapp.xyz';
 
 function App() {
   const email = ""
@@ -11,8 +21,19 @@ function App() {
 
   return (
     <div className="App">
-      <Login/>
-      <Register/>
+      <Router>
+        <Switch>
+          <Route exact path='/'>
+            <Landing/>
+          </Route>
+          <Route exact path='/login'>
+            <Login/>
+          </Route>
+          <Route exact path='/register'>
+            <Register/>
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }

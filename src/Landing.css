@@ -1,0 +1,10 @@
+.landing-container {
+  text-align: center;
+}
+
+.get-started {
+  margin-top: 4vh;
+  padding: 1vh 10vh;
+  font-family: Nunito, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}

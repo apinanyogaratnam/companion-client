@@ -11,10 +11,13 @@ export default function Login(props) {
     const form = event.target;
     const username = form.elements.formUsername.value;
     const password = form.elements.formPassword.value;
-    const response = await fetch(props.apiURL, {
-      method: 'POST',
-      headers: ''
-    });
+    const response = await fetch(
+      `${props.apiURL}/verify/${encodeURIComponent(username)}`,
+      {
+        method: 'POST',
+        headers: ''
+      }
+    );
   }
   
   return <>
