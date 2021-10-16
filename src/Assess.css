@@ -1,0 +1,4 @@
+.mood-chooser {
+  display: flex;
+  flex-flow: row wrap;
+}
