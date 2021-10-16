@@ -24,7 +24,7 @@ export default function Landing() {
   ];
   
   return <Animate steps={appearTransitionSteps}>
-      <div className='landing-container'>
+      <div className='align-center'>
         <h1>Companion</h1>
         <h2>your mindfulness buddy</h2>
         <Button className='get-started' size='lg' variant='primary' onClick={() => history.push('/register')}>Get Started</Button>
