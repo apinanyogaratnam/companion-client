@@ -2,12 +2,24 @@ import { useHistory } from 'react-router-dom';
 import './App.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 import { UsernameField, PasswordField } from './Auth/Fields';
 
 export default function Login(props) {
   const history = useHistory();
-  
+  const [userData, setUserData] = useState(null);
+
+  const isValidUser = async (email_to_confirm, password_to_confirm) => {
+    const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/validate`, {
+      username: email_to_confirm,
+      password: password_to_confirm
+    });
+    console.log(data);
+    // setUserData(data);
+  };
+
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -16,6 +28,9 @@ export default function Login(props) {
     
     const reqBody = { email, password };
     console.dir(reqBody);
+
+    isValidUser(email, password);
+
     try {
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/validate`,
