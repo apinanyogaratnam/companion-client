@@ -11,15 +11,6 @@ export default function Login(props) {
   const history = useHistory();
   const [userData, setUserData] = useState(null);
 
-  const isValidUser = async (email_to_confirm, password_to_confirm) => {
-    const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/validate`, {
-      username: email_to_confirm,
-      password: password_to_confirm
-    });
-    console.log(data);
-    // setUserData(data);
-  };
-
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -30,6 +21,7 @@ export default function Login(props) {
     console.dir(reqBody);
 
     isValidUser(email, password);
+    console.log(userData);
 
     try {
       const response = await fetch(
@@ -45,8 +37,8 @@ export default function Login(props) {
       );
       
       const resBody = undefined;//await response.json();
-      console.dir(resBody);
-      console.log(await response.text());
+      // console.dir(resBody);
+      // console.log(await response.text());
     
       if (resBody.success) {
         props.setUser(resBody.data);
@@ -55,7 +47,7 @@ export default function Login(props) {
         window.alert(resBody.error);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       window.alert('Failed to contact server :(');
     }
   }
