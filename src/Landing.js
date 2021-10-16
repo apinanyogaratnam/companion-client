@@ -8,7 +8,8 @@ import Animate from 'react-smooth';
 
 export default function Landing() {
   const history = useHistory();
-  const transitionSteps = [
+  
+  const appearTransitionSteps = [
     {
       style: {
         transform: 'translate(0,-500px)',
@@ -21,11 +22,12 @@ export default function Landing() {
       duration: 800
     }
   ];
-  return <Animate steps={transitionSteps}>
-    <div className='landing-container'>
-      <h1>Companion</h1>
-      <h2>your mindfulness buddy</h2>
-      <Button className='get-started' size='lg' variant='primary' onClick={() => history.push('/register')}>Get Started</Button>
-    </div>
+  
+  return <Animate steps={appearTransitionSteps}>
+      <div className='landing-container'>
+        <h1>Companion</h1>
+        <h2>your mindfulness buddy</h2>
+        <Button className='get-started' size='lg' variant='primary' onClick={() => history.push('/register')}>Get Started</Button>
+      </div>
   </Animate>;
 }

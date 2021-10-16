@@ -11,8 +11,6 @@ import Register from './Register';
 import Login from './Login';
 import Landing from './Landing';
 
-const apiURL = 'https://server.companionapp.xyz';
-
 function App() {
   const email = ""
   const username = ""
