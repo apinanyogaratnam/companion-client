@@ -14,19 +14,35 @@ export default function Login(props) {
     const email = form.elements.formUsername.value;
     const password = form.elements.formPassword.value;
     
-    const body = { email, password };
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/verify`,
-      {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
+    const reqBody = { email, password };
+    console.dir(reqBody);
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/validate`,
+        {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          reqBody: JSON.stringify(reqBody)
+        }
+      );
+      
+      const resBody = undefined;//await response.json();
+      console.dir(resBody);
+      console.log(await response.text());
+    
+      if (resBody.success) {
+        props.setUser(resBody.data);
+        history.push('/assess');
+      } else {
+        window.alert(resBody.error);
       }
-    );
-    window.alert(await response.json());
+    } catch (error) {
+      console.log(error);
+      window.alert('Failed to contact server :(');
+    }
   }
   
   return (

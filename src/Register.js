@@ -18,22 +18,33 @@ const Register = (props) => {
     const password = form.elements.formPassword.value;
     // TODO: Validate re-entered password
     
-    const body = { firstName, lastName, email, password, logs: [] };
-    const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/users`,
-      {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-      }
-    );
+    const reqBody = { firstName, lastName, email, password, logs: [] };
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/users`,
+        {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          reqBody: JSON.stringify(reqBody)
+        }
+      );
+      
+      const resBody = await response.json();
+      console.dir(resBody);
     
-    console.dir(await response.json());
-    if (response.ok) {
-      history.push('/reflect');
+      if (resBody.success) {
+        props.setUser(reqBody);
+        history.push('/assess');
+      } else {
+        window.alert(resBody.error);
+      }
+    
+    } catch (error) {
+      console.log(error);
+      window.alert('Failed to contact server :(');
     }
   }
   

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   HashRouter as Router,
   Switch,
@@ -7,16 +8,13 @@ import {
 
 import './App.css';
 import Register from './Register';
-
 import Login from './Login';
 import Landing from './Landing';
+import Assess from './Assess';
 
 function App() {
-  const email = ""
-  const username = ""
-  const password = ""
-
-
+  const [user, setUser] = useState({});
+  
   return (
     <div className="App">
       <Router>
@@ -25,10 +23,13 @@ function App() {
             <Landing/>
           </Route>
           <Route exact path='/login'>
-            <Login/>
+            <Login setUser={setUser}/>
           </Route>
           <Route exact path='/register'>
-            <Register/>
+            <Register setUser={setUser}/>
+          </Route>
+          <Route exact path='/assess'>
+            <Assess user={user}/>
           </Route>
         </Switch>
       </Router>
