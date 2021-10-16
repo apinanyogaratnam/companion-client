@@ -34,8 +34,8 @@ export default function Login(props) {
       );
       
       const resBody = undefined;//await response.json();
-      // console.dir(resBody);
-      // console.log(await response.text());
+      console.dir(resBody);
+      console.log(await response.text());
     
       if (resBody.success) {
         props.setUser(resBody.data);
@@ -44,7 +44,7 @@ export default function Login(props) {
         window.alert(resBody.error);
       }
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       window.alert('Failed to contact server :(');
     }
   }
