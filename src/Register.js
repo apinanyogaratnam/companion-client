@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './App.css';
 import './Register.css';
@@ -8,9 +9,13 @@ import { UsernameField, PasswordField, GenericField } from './Auth/Fields';
 
 const Register = (props) => {
   const history = useHistory();
+  const [isLoading, setLoading] = useState(false);
   
   async function handleSubmit(event) {
     event.preventDefault();
+    if (isLoading) return;
+    setLoading(true);
+    
     const form = event.target;
     const firstName = form.elements.formFirstName.value;
     const lastName = form.elements.formLastName.value;
@@ -28,7 +33,7 @@ const Register = (props) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
-          reqBody: JSON.stringify(reqBody)
+          body: JSON.stringify(reqBody)
         }
       );
       
@@ -39,13 +44,15 @@ const Register = (props) => {
         props.setUser(reqBody);
         history.push('/assess');
       } else {
-        window.alert(resBody.error);
+        window.alert("Couldn't create the account");
       }
     
     } catch (error) {
       console.log(error);
       window.alert('Failed to contact server :(');
     }
+    
+    setLoading(false);
   }
   
   return (
@@ -57,12 +64,12 @@ const Register = (props) => {
         <UsernameField/>
         <PasswordField/>
         <PasswordField controlId="formConfirmPassword" label="Re-enter password"/>
-        <Button className='wide' variant="primary" type="submit">
-          Register
+        <Button className='fullwidth' variant="primary" disabled={isLoading} type="submit">
+          {!isLoading ? 'Register' : 'Registering…'}
         </Button>
       </Form>
       <div className='login-link-container'>
-        <Button className='wide' variant='primary' onClick={() => history.push('/login')}>Log into existing account</Button>
+        <Button className='fullwidth' variant='primary' onClick={() => history.push('/login')}>Log into existing account</Button>
       </div>
     </div>
   );

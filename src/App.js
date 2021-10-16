@@ -13,10 +13,16 @@ import Landing from './Landing';
 import Assess from './Assess';
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    email: 'demo@demo.user',
+    firstName: 'Demo',
+    lastName: 'User',
+    password: 'password',
+    logs: []
+  });
   
   return (
-    <div className="App">
+    <div className="App flex-column">
       <Router>
         <Switch>
           <Route exact path='/'>
