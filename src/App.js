@@ -41,7 +41,7 @@ function App() {
             <Assess user={user}/>
           </Route>
           <Route exact path='/companion'>
-            <Companion/>
+            <Companion user={user}/>
           </Route>
           <Route exact path='/diary'>
             <Diary user={user}/>
