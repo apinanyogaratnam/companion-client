@@ -63,7 +63,9 @@ export default function Diary(props) {
           })
         }
       </ul>
-      <Button className='fullwidth' variant='primary' onClick={handleGoBack}>Go Back</Button>
+      <div className='fullwidth flex-row gap-2'>
+        <Button className='fullwidth' variant='primary' onClick={handleGoBack}>Go Back</Button>
+      </div>
     </div>
   );
 }
