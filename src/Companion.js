@@ -4,7 +4,7 @@ import './Companion.css'
 import { RecordableTextField } from './Auth/Fields';
 import axios from 'axios';
 
-const Companion = () => {
+const Companion = (props) => {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
     const [botMessage, setBotMessage] = useState('');
@@ -43,6 +43,28 @@ const Companion = () => {
         setBotMessage('');
     };
 
+    const saveConversation = async () => {
+        const baseUrl = "https://companion-htv5.herokuapp.com/api/v1/";
+        const id = props.user._id;
+        const endUrl = '/logs/conversations';
+
+        const url = baseUrl + id + endUrl;
+        console.log(url);
+        const res = await fetch(
+            url,
+            {
+              method: 'PATCH',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({messages: messages})
+            }
+          );
+        const resBody = await res.json();
+        console.log(resBody);
+    };
+
     return (
         <div>
             <h1>Companion</h1>
@@ -63,6 +85,7 @@ const Companion = () => {
             </div>
 
             <RecordableTextField className="message-input" controlId='formMessage' label='Type Message Here' value={message} setValue={setMessage} onKeyPress={(e) => e.key === 'Enter' && handleSubmitMessage()}/>
+            <button onClick={saveConversation}>Save Conversation</button>
         </div>
     );
 }
