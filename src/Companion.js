@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import './Companion.css'
+import { RecordableTextField } from './Auth/Fields';
 
 const Companion = () => {
     const [messages, setMessages] = useState([]);
+    const [message, setMessage] = useState('');
     // {bot: "text"}
     // {user: "text"}
 
@@ -22,6 +24,7 @@ const Companion = () => {
                 <Form.Control as="textarea" placeholder="Type message here" rows={3} />
             </Form.Group>
             </Form>
+            <RecordableTextField controlId='formMessage' label='Type Message Here' value={message} setValue={setMessage}/>
         </div>
     );
 }
