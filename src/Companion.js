@@ -8,26 +8,38 @@ const Companion = () => {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
     const [botMessage, setBotMessage] = useState('');
-    // {bot: "text"}
-    // {user: "text"}
     
     const getBotResponse = async (userInput) => {
-        const res = await axios.post(`${process.env.REACT_APP_CHATBOT_API_URL}/${process.env.REACT_APP_TOKEN}`);
-        setBotMessage(res.message);
+        const url = "https://companion-api-htv5.herokuapp.com/api/v1/12345678";
+        const res = await fetch(
+            url,
+            {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({message: userInput})
+            }
+          );
+        const resBody = await res.json();
+        setBotMessage(resBody);
+
+        return resBody.message;
     };
 
     const handleSubmitMessage = async () => {
         messages.push({user: message});
         setMessages(messages);
+        const msg = message;
+        setMessage('');
 
         // get response from bot
-        await getBotResponse(message);
-        messages.push({bot: botMessage});
+        const data = await getBotResponse(msg);
+        messages.push({bot: data});
         setMessages(messages);
 
-        setMessage('');
         setBotMessage('');
-        console.log(messages);
     };
 
     return (
@@ -36,7 +48,15 @@ const Companion = () => {
             <div className="messages-view-container">
                 <div className="messages-view">
                     <div className="message">
-                        <h1>Hello</h1>
+                        {
+                            messages.map(msg => {
+                                return(
+                                    <div>
+                                        {msg.user ? <div className="user-message">You: {msg.user}</div> : <div className="bot-message">Bot: {msg.bot}</div>}
+                                    </div>
+                                );
+                            })
+                        }
                     </div>
                 </div>
             </div>
