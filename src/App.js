@@ -15,6 +15,7 @@ import Companion from './Companion';
 
 function App() {
   const [user, setUser] = useState({
+    _id: 123,
     email: 'demo@demo.user',
     firstName: 'Demo',
     lastName: 'User',

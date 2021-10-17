@@ -10,6 +10,8 @@ import { GenericField, RecordableTextField } from './Auth/Fields';
 
 export default function Assess(props) {
   const history = useHistory();
+  const [isLoading, setLoading] = useState(false);
+  
   const [mood, setMood] = useState(null);
   const [message, setMessage2] = useState('');
   function setMessage(newMessage) {
@@ -19,7 +21,38 @@ export default function Assess(props) {
   
   async function handleSubmit(event) {
     event.preventDefault();
-    const form = event.target;
+    if (isLoading) return;
+    setLoading(true);
+    
+    const reqBody = { mood, message };
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/${props.user._id}/logs`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(reqBody)
+        }
+      );
+      
+      const resBody = await response.json();
+      console.dir(resBody);
+    
+      if (resBody.error) {
+        console.dir(resBody.error);
+        window.alert("Couldn't submit: " + resBody.error);
+      } else {
+        history.push('/companion')
+      }
+    
+    } catch (error) {
+      console.dir(error);
+      window.alert('Failed to contact server :(');
+    }
+    
+    setLoading(false);
   }
 
   function handleTalkToSomeone() {
@@ -34,7 +67,7 @@ export default function Assess(props) {
       <MoodChooser mood={mood} setMood={setMood}/>
       <Form className='width-50' onSubmit={handleSubmit}>
         <RecordableTextField controlId='formMessage' label='Describe your day…' value={message} setValue={setMessage}/>
-        <Button className='fullwidth' variant="primary" onClick={handleSubmit} disabled={!mood}>
+        <Button className='fullwidth' variant="primary" onClick={handleSubmit} disabled={!mood || isLoading}>
           Continue
         </Button>
       </Form>
