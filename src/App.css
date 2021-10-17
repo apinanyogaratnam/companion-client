@@ -32,6 +32,12 @@ input {
   margin-top: 1em;
 }
 
+li {
+  list-style: none;
+  list-style-position: inside;
+  margin-left: 0;
+}
+
 .App {
   width: 100%;
   background-color: #282c34;
@@ -71,6 +77,9 @@ input {
 
 .align-center {
   text-align: center;
+}
+.align-left {
+  text-align: left;
 }
 
 .flex-column {

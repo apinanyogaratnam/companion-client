@@ -9,7 +9,7 @@ export default function Diary(props) {
   const history = useHistory();
   const [isLoading, setLoading] = useState(false);
   
-  const [log, setLog] = useState(null);
+  const [logs, setLogs] = useState(null);
   
   useEffect(async () => {
     setLoading(true);
@@ -20,6 +20,7 @@ export default function Diary(props) {
         {
           method: 'GET',
           headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
           }
         }
@@ -32,7 +33,7 @@ export default function Diary(props) {
         console.dir(resBody.error);
         window.alert("Couldn't retrieve entries, please try again");
       } else {
-        setLog(resBody.logs);
+        setLogs(resBody.logs);
       }
     
     } catch (error) {
@@ -44,9 +45,29 @@ export default function Diary(props) {
   }, [props.user]);
   
   return (
-    <div className='align-center flex-column gap-4'>
+    <div className='width-60 flex-column gap-4'>
       <h1>My diary</h1>
-    
+      <ul className='fullwidth diary-container'>
+        {
+          logs && logs.map((log, index) => {
+            return <>
+              <li key={`log-entry-${index}`}>
+                <DiaryEntry log={log}/>
+              </li>
+              {index !== logs.length - 1 && <hr/>}
+            </>;
+          })
+        }
+      </ul>
+    </div>
+  );
+}
+
+function DiaryEntry(props) {
+  return (
+    <div className='flex-row' style={{justifyContent: 'flex-start'}}>
+      <p className='align-left mood'>{props.log.mood}</p>
+      <p className='align-left message'>{props.log.message}</p>
     </div>
   );
 }
