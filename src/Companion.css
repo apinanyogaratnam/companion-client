@@ -2,3 +2,9 @@
     align-items: center;
     width: 80%;
 }
+
+.messages-view-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
