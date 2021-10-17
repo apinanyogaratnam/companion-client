@@ -21,8 +21,11 @@
 
 .user-message {
     color: grey;
+    margin-left: 20px;
+    margin-top: 20px;
 }
 
 .bot-message {
     color: rgb(201, 36, 36);
+    margin-left: 20px;
 }
