@@ -35,7 +35,8 @@ const Companion = () => {
         setMessage('');
 
         // get response from bot
-        const data = await getBotResponse(msg);
+        var data = await getBotResponse(msg);
+        if (data === '') data = "Can you rephrase that? I don't seem to understand";
         messages.push({bot: data});
         setMessages(messages);
 
