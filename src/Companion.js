@@ -7,16 +7,27 @@ import axios from 'axios';
 const Companion = () => {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
+    const [botMessage, setBotMessage] = useState('');
     // {bot: "text"}
     // {user: "text"}
     
-    const handleSubmitMessage = () => {
+    const getBotResponse = async (userInput) => {
+        const res = await axios.post(`${process.env.REACT_APP_CHATBOT_API_URL}/${process.env.REACT_APP_TOKEN}`);
+        setBotMessage(res.message);
+    };
+
+    const handleSubmitMessage = async () => {
         messages.push({user: message});
         setMessages(messages);
-        setMessage('');
 
         // get response from bot
+        await getBotResponse(message);
+        messages.push({bot: botMessage});
+        setMessages(messages);
 
+        setMessage('');
+        setBotMessage('');
+        console.log(messages);
     };
 
     return (
