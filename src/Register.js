@@ -43,7 +43,7 @@ const Register = (props) => {
       if (resBody.error) {
         window.alert("Couldn't create the account");
       } else {
-        props.setUser(reqBody);
+        props.setUser(resBody.user);
         history.push('/assess');
       }
     
