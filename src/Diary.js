@@ -43,6 +43,10 @@ export default function Diary(props) {
     
     setLoading(false);
   }, [props.user]);
+
+  function handleGoBack() {
+    history.push('/assess');
+  }
   
   return (
     <div className='width-60 flex-column gap-4'>
@@ -59,6 +63,9 @@ export default function Diary(props) {
           })
         }
       </ul>
+      <div className='fullwidth flex-row gap-2'>
+        <Button className='fullwidth' variant='primary' onClick={handleGoBack}>Go Back</Button>
+      </div>
     </div>
   );
 }

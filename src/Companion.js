@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import './Companion.css'
 import { RecordableTextField } from './Auth/Fields';
