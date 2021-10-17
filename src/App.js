@@ -12,10 +12,11 @@ import Login from './Login';
 import Landing from './Landing';
 import Assess from './Assess';
 import Companion from './Companion';
+import Diary from './Diary';
 
 function App() {
   const [user, setUser] = useState({
-    _id: 123,
+    _id: '616b918b2749f77e074616ac',
     email: 'demo@demo.user',
     firstName: 'Demo',
     lastName: 'User',
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route exact path='/companion'>
             <Companion/>
+          </Route>
+          <Route exact path='/diary'>
+            <Diary user={user}/>
           </Route>
         </Switch>
       </Router>

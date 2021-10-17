@@ -30,7 +30,7 @@ export function GenericField(props){
 export function RecordableTextField(props) {
   return (
     <Form.Group className='mb-2 flex-row' controlId={props.controlId}>
-      <Form.Control type='text' placeholder={props.label} value={props.value} onChange={e => props.setValue(e.target.value)}/>
+      <Form.Control type='text' placeholder={props.label} value={props.value} onChange={e => props.setValue(e.target.value)} onKeyPress={props.onKeyPress}/>
       <Recorder text={props.value} setText={props.setValue}/>
     </Form.Group>
   );

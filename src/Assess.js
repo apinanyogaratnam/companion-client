@@ -4,7 +4,6 @@ import './App.css';
 import './Assess.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 import { GenericField, RecordableTextField } from './Auth/Fields';
 
@@ -51,9 +50,11 @@ export default function Assess(props) {
     
     setLoading(false);
   }
-
+  
+  function handleMyDiary() {
+    history.push('/diary')
+  }
   function handleTalkToSomeone() {
-    console.log('Clicked!');
     history.push('/companion');
   }
   
@@ -64,11 +65,16 @@ export default function Assess(props) {
       <MoodChooser mood={mood} setMood={setMood}/>
       <Form className='width-50' onSubmit={handleSubmit}>
         <RecordableTextField controlId='formMessage' label='Describe your day…' value={message} setValue={setMessage}/>
-        <Button className='fullwidth' variant={!isSaved ? 'primary' : 'success'} onClick={handleSubmit} disabled={!mood || isLoading || isSaved}>
-          {isLoading ? 'Saving…' : !isSaved ? 'Save' : 'Entry saved'}
-        </Button>
+        <div className='align-center flex-column'>
+          <Button className='fullwidth' variant='success' onClick={handleSubmit} disabled={!mood || isLoading || isSaved}>
+            {isLoading ? 'Saving…' : !isSaved ? 'Save' : 'Entry saved'}
+          </Button>
+          <div className='fullwidth flex-row gap-2'>
+            <Button className='fullwidth' variant='primary' onClick={handleMyDiary}>My diary</Button>
+            <Button className='fullwidth' variant='primary' onClick={handleTalkToSomeone}>Talk to someone</Button>
+          </div>
+        </div>
       </Form>
-      <Button className="" variant="primary" onClick={handleTalkToSomeone}>Talk to someone</Button>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 .message-input {
     align-items: center;
     width: 80%;
+    height: 200px;
 }
 
 .messages-view-container {
@@ -12,7 +13,16 @@
 .messages-view {
     width: 80%;
     height: 60%;
-    min-width: 300px;
-    min-height: 300px;
+    min-width: 1200px;
+    min-height: 400px;
     background-color: white;
+    border-radius: 10px;
+}
+
+.user-message {
+    color: black;
+}
+
+.bot-message {
+    color: black;
 }
