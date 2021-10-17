@@ -11,6 +11,7 @@ import Register from './Register';
 import Login from './Login';
 import Landing from './Landing';
 import Assess from './Assess';
+import Companion from './Companion';
 
 function App() {
   const [user, setUser] = useState({
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route exact path='/assess'>
             <Assess user={user}/>
+          </Route>
+          <Route exact path='/companion'>
+            <Companion/>
           </Route>
         </Switch>
       </Router>
