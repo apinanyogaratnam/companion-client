@@ -18,3 +18,11 @@
     background-color: white;
     border-radius: 10px;
 }
+
+.user-message {
+    color: black;
+}
+
+.bot-message {
+    color: black;
+}
