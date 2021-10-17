@@ -50,9 +50,3 @@ export default function Diary(props) {
     </div>
   );
 }
-
-function DiaryEntry(props) {
-  return (
-    
-  );
-}
