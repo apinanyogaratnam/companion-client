@@ -15,9 +15,11 @@ h2 {
 .btn {
   margin-top: 4vh;
   padding: 1vh 4vw;
-  min-width: 20vw;
   font-family: Nunito, Helvetica, Arial, sans-serif;
   font-weight: 400;
+}
+.btn.wide {
+  min-width: 20vw;
 }
 .btn.fullwidth {
   width: 100%;
@@ -75,17 +77,28 @@ input {
   display: flex;
   flex-flow: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 }
 .flex-column-wrap {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 }
 
 .flex-row-wrap {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  align-items: center;
+}
+.flex-row {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.record-button {
+  margin-top: 2vh;
 }

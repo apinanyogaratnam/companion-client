@@ -6,17 +6,20 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
-import { GenericField } from './Auth/Fields';
+import { GenericField, RecordableTextField } from './Auth/Fields';
 
 export default function Assess(props) {
   const history = useHistory();
   const [mood, setMood] = useState(null);
+  const [message, setMessage2] = useState('');
+  function setMessage(newMessage) {
+    console.log(newMessage);
+    setMessage2(newMessage);
+  }
   
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
-    const message = form.elements.formMessage.value;
-    
   }
   
   return (
@@ -25,7 +28,7 @@ export default function Assess(props) {
       <h2>How are you feeling today?</h2>
       <MoodChooser mood={mood} setMood={setMood}/>
       <Form className='width-50' onSubmit={handleSubmit}>
-        <GenericField controlId='formMessage' label='Describe your day…'/>
+        <RecordableTextField controlId='formMessage' label='Describe your day…' value={message} setValue={setMessage}/>
         <Button className='fullwidth' variant="primary" onClick={handleSubmit} disabled={!mood}>
           Continue
         </Button>
@@ -55,6 +58,6 @@ function MoodChooser(props) {
 
 function MoodButton(props) {
   return (
-    <Button size='sm' variant='primary' className={'mood-button '} onClick={() => props.setMood(props.mood)}>{props.mood}</Button>
+    <Button size='sm' variant='primary' className={'mood-button '} active={props.currentMood == props.mood} onClick={() => props.setMood(props.mood)}>{props.mood}</Button>
   );
 }

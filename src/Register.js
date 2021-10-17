@@ -67,10 +67,10 @@ const Register = (props) => {
         <Button className='fullwidth' variant="primary" disabled={isLoading} type="submit">
           {!isLoading ? 'Register' : 'Registering…'}
         </Button>
+        <div className='login-link-container'>
+          <Button className='fullwidth' variant='primary' onClick={() => history.push('/login')}>Log into existing account</Button>
+        </div>
       </Form>
-      <div className='login-link-container'>
-        <Button className='fullwidth' variant='primary' onClick={() => history.push('/login')}>Log into existing account</Button>
-      </div>
     </div>
   );
 }
