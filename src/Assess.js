@@ -11,13 +11,10 @@ import { GenericField, RecordableTextField } from './Auth/Fields';
 export default function Assess(props) {
   const history = useHistory();
   const [isLoading, setLoading] = useState(false);
+  const [isSaved, setSaved] = useState(false);
   
   const [mood, setMood] = useState(null);
-  const [message, setMessage2] = useState('');
-  function setMessage(newMessage) {
-    console.log(newMessage);
-    setMessage2(newMessage);
-  }
+  const [message, setMessage] = useState('');
   
   async function handleSubmit(event) {
     event.preventDefault();
@@ -42,9 +39,9 @@ export default function Assess(props) {
     
       if (resBody.error) {
         console.dir(resBody.error);
-        window.alert("Couldn't submit: " + resBody.error);
+        window.alert("Couldn't save, please try again");
       } else {
-        history.push('/companion')
+        setSaved(true);
       }
     
     } catch (error) {
@@ -67,8 +64,8 @@ export default function Assess(props) {
       <MoodChooser mood={mood} setMood={setMood}/>
       <Form className='width-50' onSubmit={handleSubmit}>
         <RecordableTextField controlId='formMessage' label='Describe your day…' value={message} setValue={setMessage}/>
-        <Button className='fullwidth' variant="primary" onClick={handleSubmit} disabled={!mood || isLoading}>
-          Continue
+        <Button className='fullwidth' variant={!isSaved ? 'primary' : 'success'} onClick={handleSubmit} disabled={!mood || isLoading || isSaved}>
+          {isLoading ? 'Saving…' : !isSaved ? 'Save' : 'Entry saved'}
         </Button>
       </Form>
       <Button className="" variant="primary" onClick={handleTalkToSomeone}>Talk to someone</Button>

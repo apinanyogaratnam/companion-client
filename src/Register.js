@@ -40,11 +40,11 @@ const Register = (props) => {
       const resBody = await response.json();
       console.dir(resBody);
     
-      if (resBody.success) {
+      if (resBody.error) {
+        window.alert("Couldn't create the account");
+      } else {
         props.setUser(reqBody);
         history.push('/assess');
-      } else {
-        window.alert("Couldn't create the account");
       }
     
     } catch (error) {
