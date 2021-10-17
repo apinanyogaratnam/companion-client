@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import './Companion.css'
 import { RecordableTextField } from './Auth/Fields';
 import axios from 'axios';
@@ -86,7 +87,7 @@ const Companion = (props) => {
             </div>
 
             <RecordableTextField className="message-input" controlId='formMessage' label='Type Message Here' value={message} setValue={setMessage} onKeyPress={(e) => e.key === 'Enter' && handleSubmitMessage()}/>
-            <button onClick={saveConversation}>Save Conversation</button>
+            <Button onClick={saveConversation}>Save Conversation</Button>
         </div>
     );
 }
