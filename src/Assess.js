@@ -18,6 +18,10 @@ export default function Assess(props) {
     const message = form.elements.formMessage.value;
     
   }
+
+  function handleTalkToSomeone() {
+    console.log("Clicked!");
+  }
   
   return (
     <div className='align-center flex-column gap-4'>
@@ -30,6 +34,7 @@ export default function Assess(props) {
           Continue
         </Button>
       </Form>
+      <Button className="" variant="primary" onClick={handleTalkToSomeone}>Talk to someone</Button>
     </div>
   );
 }
