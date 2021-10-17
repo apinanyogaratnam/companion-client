@@ -2,12 +2,22 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import './Companion.css'
 import { RecordableTextField } from './Auth/Fields';
+import axios from 'axios';
 
 const Companion = () => {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
     // {bot: "text"}
     // {user: "text"}
+    
+    const handleSubmitMessage = () => {
+        messages.push({user: message});
+        setMessages(messages);
+        setMessage('');
+
+        // get response from bot
+
+    };
 
     return (
         <div>
@@ -19,12 +29,8 @@ const Companion = () => {
                     </div>
                 </div>
             </div>
-            <Form className="message-input">
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Control as="textarea" placeholder="Type message here" rows={3} />
-            </Form.Group>
-            </Form>
-            <RecordableTextField controlId='formMessage' label='Type Message Here' value={message} setValue={setMessage}/>
+
+            <RecordableTextField className="message-input" controlId='formMessage' label='Type Message Here' value={message} setValue={setMessage} onKeyPress={(e) => e.key === 'Enter' && handleSubmitMessage()}/>
         </div>
     );
 }
