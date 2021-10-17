@@ -1,6 +1,8 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+import Recorder from '../Recorder';
+
 export function UsernameField(props) {
   return (
     <Form.Group className='mb-2' controlId={props.controlId ?? 'formUsername'}>
@@ -19,7 +21,16 @@ export function PasswordField(props) {
 export function GenericField(props){
   return (
     <Form.Group className='mb-2' controlId={props.controlId}>
-      <Form.Control type='text' placeholder={props.label}/>
+      <Form.Control type='text' placeholder={props.label} value={props.value}/>
+    </Form.Group>
+  );
+}
+
+export function RecordableTextField(props) {
+  return (
+    <Form.Group className='mb-2 flex-row' controlId={props.controlId}>
+      <Form.Control type='text' placeholder={props.label} value={props.value} onChange={e => props.setValue(e.target.value)}/>
+      <Recorder text={props.value} setText={props.setValue}/>
     </Form.Group>
   );
 }
