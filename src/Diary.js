@@ -56,7 +56,7 @@ export default function Diary(props) {
           logs && logs.map((log, index) => {
             return <>
               <li key={`log-entry-${index}`}>
-                <DiaryEntry log={log}/>
+                <DiaryEntry log={log} index={index}/>
               </li>
               {index !== logs.length - 1 && <hr/>}
             </>;
@@ -74,7 +74,34 @@ function DiaryEntry(props) {
   return (
     <div className='flex-row' style={{justifyContent: 'flex-start'}}>
       <p className='align-left mood'>{props.log.mood}</p>
-      <p className='align-left message'>{props.log.message}</p>
+      <div className='flex-column' style={{alignItems: 'flex-start'}}>
+        <p className='align-left message'>{props.log.message}</p>
+        <ul>
+          {
+            props.log.conversations && props.log.conversations.map((conversation, index) => {
+              return <>
+                <li key={`log-entry-${props.index}-conversation-${index}`}>
+                  <details>
+                    <summary className='align-left conversation'>
+                      Conversation #{index + 1}
+                    </summary>
+                    <p className='align-left conversation'>
+                      {conversation.map(msg => {
+                        return <>
+                          {msg.user && <span className='align-left' style={{display: 'inline-block', minWidth: '150px'}}>You: </span>}
+                          {msg.bot && <span className='align-left' style={{display: 'inline-block', minWidth: '150px'}}>Companion: </span>}
+                          {msg.user ?? msg.bot}
+                          {index !== conversation.length - 1 && <br/>}
+                        </>;
+                      })}
+                    </p>
+                  </details>
+                </li>
+              </>;
+            })
+          }
+        </ul>
+      </div>
     </div>
   );
 }
