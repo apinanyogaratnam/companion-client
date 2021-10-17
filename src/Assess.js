@@ -20,7 +20,8 @@ export default function Assess(props) {
   }
 
   function handleTalkToSomeone() {
-    console.log("Clicked!");
+    console.log('Clicked!');
+    history.push('/companion');
   }
   
   return (
