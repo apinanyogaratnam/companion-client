@@ -14,6 +14,7 @@ export default function Landing() {
       style: {
         transform: 'translate(0,-500px)',
       },
+      duration: 0
     },
     {
       style: {

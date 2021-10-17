@@ -21,7 +21,7 @@ h2 {
 .btn.wide {
   min-width: 20vw;
 }
-.btn.fullwidth {
+.fullwidth {
   width: 100%;
 }
 
